@@ -1,0 +1,63 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "the robot",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "FeedingDemoIntent",
+                    "slots": [
+                        {
+                            "name": "FOOD_ITEMS",
+                            "type": "FOOD_ITEMS"
+                        }
+                    ],
+                    "samples": [
+                        "i need {FOOD_ITEMS}",
+                        "i want {FOOD_ITEMS}",
+                        "feed me {FOOD_ITEMS}",
+                        "i want to eat",
+                        "i want food"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                }
+            ],
+            "types": [
+                {
+                    "name": "FOOD_ITEMS",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "strawberry"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "melon"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "carrot"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}
