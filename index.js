@@ -21,11 +21,11 @@ const FeedingDemoIntentHandler = {
         var speakOutput;
         const foodItem = Alexa.getSlotValue(handlerInput.requestEnvelope, 'FOOD_ITEMS');
         // publish message to ROS
-        // msg_topic.advertise();
-        // var str = new ROSLIB.Message({
-        //     data : this.event.request.intent.slots.Object.value
-        // });
-        // msg_topic.publish(str);
+        msg_topic.advertise();
+        var str = new ROSLIB.Message({
+            data : foodItem
+        });
+        msg_topic.publish(str);
 
         console.log('food: %s', foodItem);
         if (foodItem === 'carrot') {
@@ -132,21 +132,28 @@ exports.handler = Alexa.SkillBuilders.custom()
     .lambda();
 
 
-// // Connecting to ROS
-// var ROSLIB = require('roslib');
-// // rosbridge_websocket defaults to port 9090
-// var ros = new ROSLIB.Ros({url: 'ws://localhost:9090'});
+// Connecting to ROS
+var ROSLIB = require('roslib');
 
-// ros.on('connection', function() {
-//   console.log('publish-example: Connected to websocket server.');
-// });
+// rosbridge_websocket defaults to port 9090
+var ros = new ROSLIB.Ros({
+    url: 'ws://localhost:9090'
+});
 
-// ros.on('error', function(error) {
-//   console.log('publish-example: Error connecting to websocket server: ', error);
-// });
+ros.on('connection', function() {
+    console.log('publish-example: Connected to websocket server.');
+});
 
-// ros.on('close', function() {
-//   console.log('publish-example: Connection to websocket server closed.');
-// });
+ros.on('error', function(error) {
+    console.log('publish-example: Error connecting to websocket server: ', error);
+});
 
-// var msg_topic = new ROSLIB.Topic({ros: ros, name: '/alexa_msgs', messageType: 'std_msgs/String'});
+ros.on('close', function() {
+    console.log('publish-example: Connection to websocket server closed.');
+});
+
+var msg_topic = new ROSLIB.Topic({
+    ros: ros, 
+    name: '/alexa_msgs', 
+    messageType: 'std_msgs/String'
+});
