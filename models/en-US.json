@@ -41,16 +41,25 @@
                     "name": "FOOD_ITEMS",
                     "values": [
                         {
+                            "id": "3",
+                            "name": {
+                                "value": "celery"
+                            }
+                        },
+                        {
+                            "id": "2",
+                            "name": {
+                                "value": "cantaloupe"
+                            }
+                        },
+                        {
+                            "id": "1",
                             "name": {
                                 "value": "strawberry"
                             }
                         },
                         {
-                            "name": {
-                                "value": "melon"
-                            }
-                        },
-                        {
+                            "id": "4",
                             "name": {
                                 "value": "carrot"
                             }
