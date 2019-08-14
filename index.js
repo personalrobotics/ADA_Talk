@@ -12,10 +12,32 @@ const LaunchRequestHandler = {
             .getResponse();
     }
 };
-const FeedingDemoIntentHandler = {
+const InProgressFeedingDemoIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
-            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'FeedingDemoIntent';
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'FeedingDemoIntent'
+            && Alexa.getDialogState(handlerInput.requestEnvelope) !== 'COMPLETED';
+    },
+    handle(handlerInput) {
+        const currentIntent = Alexa.getIntentName(handlerInput.requestEnvelope);
+
+        const speakOutput = 'Say it one more time.';
+        const foodItem = Alexa.getSlotValue(handlerInput.requestEnvelope, 'FOOD_ITEMS');
+
+        console.log('food: %s', foodItem);
+
+        return handlerInput.responseBuilder
+            .addDelegateDirective(currentIntent)
+            .reprompt(speakOutput)
+            .speak(speakOutput)
+            .getResponse();
+    }
+};
+const CompletedFeedingDemoIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'FeedingDemoIntent'
+            && Alexa.getDialogState(handlerInput.requestEnvelope) === 'COMPLETED';
     },
     handle(handlerInput) {
         var speakOutput;
@@ -31,8 +53,6 @@ const FeedingDemoIntentHandler = {
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
-            // reprompt for user confirmation
-            // .reprompt('Just want to confirm, you said ${foodItem}')
             .getResponse();
     }
 };
@@ -57,7 +77,7 @@ const CancelAndStopIntentHandler = {
                 || Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.StopIntent');
     },
     handle(handlerInput) {
-        const speakOutput = 'Goodbye!';
+        var speakOutput = 'Goodbye!';
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .getResponse();
@@ -117,7 +137,8 @@ exports.handler = Alexa.SkillBuilders.custom()
     // .withSkillId("amzn1.ask.skill.de2d670d-76ee-4fe1-bd41-01bc896c0cb3")
     .addRequestHandlers(
         LaunchRequestHandler,
-        FeedingDemoIntentHandler,
+        InProgressFeedingDemoIntentHandler,
+        CompletedFeedingDemoIntentHandler,
         HelpIntentHandler,
         CancelAndStopIntentHandler,
         SessionEndedRequestHandler,

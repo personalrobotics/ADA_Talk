@@ -20,14 +20,22 @@
                     "slots": [
                         {
                             "name": "FOOD_ITEMS",
-                            "type": "FOOD_ITEMS"
+                            "type": "FOOD_ITEMS",
+                            "samples": [
+                                "{FOOD_ITEMS}"
+                            ]
                         },
                         {
                             "name": "ACTION",
                             "type": "ACTION"
+                        },
+                        {
+                            "name": "SearchQuery",
+                            "type": "AMAZON.SearchQuery"
                         }
                     ],
                     "samples": [
+                        "to give me {SearchQuery}",
                         "to give me {FOOD_ITEMS}",
                         "to get {FOOD_ITEMS}",
                         "to pickup {FOOD_ITEMS}",
@@ -48,6 +56,41 @@
                 {
                     "name": "FOOD_ITEMS",
                     "values": [
+                        {
+                            "name": {
+                                "value": "banana"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "vegetables"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "potatoes"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "green beans"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "tomatoes"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "cabbage"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "tomato"
+                            }
+                        },
                         {
                             "id": "3",
                             "name": {
@@ -106,14 +149,27 @@
                             },
                             "validations": [
                                 {
-                                    "type": "hasEntityResolutionMatch",
-                                    "prompt": "Slot.Validation.1060365625424.692906494560.61690904844"
+                                    "type": "isInSet",
+                                    "prompt": "Slot.Validation.529789871216.604075709882.1389953832800",
+                                    "values": [
+                                        "celery",
+                                        "carrot",
+                                        "cantaloupe",
+                                        "strawberry"
+                                    ]
                                 }
                             ]
                         },
                         {
                             "name": "ACTION",
                             "type": "ACTION",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        },
+                        {
+                            "name": "SearchQuery",
+                            "type": "AMAZON.SearchQuery",
                             "confirmationRequired": false,
                             "elicitationRequired": false,
                             "prompts": {}
@@ -134,15 +190,6 @@
                 ]
             },
             {
-                "id": "Slot.Validation.1060365625424.692906494560.61690904844",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "I am not prepared for the {FOOD_ITEMS} ."
-                    }
-                ]
-            },
-            {
                 "id": "Confirm.Slot.1060365625424.692906494560",
                 "variations": [
                     {
@@ -157,6 +204,24 @@
                     {
                         "type": "PlainText",
                         "value": "Please specify a food item."
+                    }
+                ]
+            },
+            {
+                "id": "Slot.Validation.529789871216.604075709882.1389953832800",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "I am not designed for it. Mind saying an item I know?"
+                    }
+                ]
+            },
+            {
+                "id": "Slot.Validation.789674083107.1287567164854.1132187682712",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "I am not trained to do it."
                     }
                 ]
             }
