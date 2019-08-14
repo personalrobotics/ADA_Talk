@@ -28,14 +28,11 @@ const FeedingDemoIntentHandler = {
         msg_topic.publish(str);
 
         console.log('food: %s', foodItem);
-        if (foodItem === 'carrot') {
-            speakOutput = 'What do you want to eat?';
-        } else {
-            speakOutput = 'What do you want to have?';
-        }
+
         return handlerInput.responseBuilder
             .speak(speakOutput)
-            // .reprompt('add a reprompt if you want to keep the session open for the user to respond')
+            // reprompt for user confirmation
+            // .reprompt('Just want to confirm, you said ${foodItem}')
             .getResponse();
     }
 };

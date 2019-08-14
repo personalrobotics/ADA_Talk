@@ -103,7 +103,7 @@ const ErrorHandler = {
 // payloads to the handlers above. Make sure any new handlers or interceptors you've
 // defined are included below. The order matters - they're processed top to bottom.
 exports.handler = Alexa.SkillBuilders.custom()
-    // .withSkillId("amzn1.ask.skill.34d6b4d8-f306-478d-994b-5443bb2ff50b")
+    .withSkillId("amzn1.ask.skill.de2d670d-76ee-4fe1-bd41-01bc896c0cb3")
     .addRequestHandlers(
         LaunchRequestHandler,
         HelloWorldIntentHandler,
