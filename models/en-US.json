@@ -32,9 +32,15 @@
                         {
                             "name": "SearchQuery",
                             "type": "AMAZON.SearchQuery"
+                        },
+                        {
+                            "name": "FEED",
+                            "type": "FEED"
                         }
                     ],
                     "samples": [
+                        "to use {ACTION} ",
+                        "to feed me {FEED}",
                         "to give me {SearchQuery}",
                         "to give me {FOOD_ITEMS}",
                         "to get {FOOD_ITEMS}",
@@ -121,9 +127,42 @@
                     "name": "ACTION",
                     "values": [
                         {
+                            "id": "3",
+                            "name": {
+                                "value": "tilted vertical"
+                            }
+                        },
+                        {
+                            "id": "2",
+                            "name": {
+                                "value": "tilted angled"
+                            }
+                        },
+                        {
+                            "id": "1",
+                            "name": {
+                                "value": "vertical"
+                            }
+                        },
+                        {
                             "id": "0",
                             "name": {
                                 "value": "stop"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "FEED",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "angled"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "horizontal"
                             }
                         }
                     ]
@@ -153,9 +192,9 @@
                                     "prompt": "Slot.Validation.529789871216.604075709882.1389953832800",
                                     "values": [
                                         "celery",
+                                        "strawberry",
                                         "carrot",
-                                        "cantaloupe",
-                                        "strawberry"
+                                        "cantaloupe"
                                     ]
                                 }
                             ]
@@ -170,6 +209,13 @@
                         {
                             "name": "SearchQuery",
                             "type": "AMAZON.SearchQuery",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        },
+                        {
+                            "name": "FEED",
+                            "type": "FEED",
                             "confirmationRequired": false,
                             "elicitationRequired": false,
                             "prompts": {}
