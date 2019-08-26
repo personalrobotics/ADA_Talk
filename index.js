@@ -1,3 +1,4 @@
+
 const Alexa = require('ask-sdk-core');
 
 const LaunchRequestHandler = {
@@ -12,45 +13,31 @@ const LaunchRequestHandler = {
             .getResponse();
     }
 };
-const InProgressFeedingDemoIntentHandler = {
+const FeedingDemoIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
-            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'FeedingDemoIntent'
-            && Alexa.getDialogState(handlerInput.requestEnvelope) !== 'COMPLETED';
-    },
-    handle(handlerInput) {
-        const currentIntent = Alexa.getIntentName(handlerInput.requestEnvelope);
-
-        const speakOutput = 'Say it one more time.';
-        const foodItem = Alexa.getSlotValue(handlerInput.requestEnvelope, 'FOOD_ITEMS');
-
-        console.log('food: %s', foodItem);
-
-        return handlerInput.responseBuilder
-            .addDelegateDirective(currentIntent)
-            .reprompt(speakOutput)
-            .speak(speakOutput)
-            .getResponse();
-    }
-};
-const CompletedFeedingDemoIntentHandler = {
-    canHandle(handlerInput) {
-        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
-            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'FeedingDemoIntent'
-            && Alexa.getDialogState(handlerInput.requestEnvelope) === 'COMPLETED';
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'FeedingDemoIntent';
     },
     handle(handlerInput) {
         var speakOutput;
         const foodItem = Alexa.getSlotValue(handlerInput.requestEnvelope, 'FOOD_ITEMS');
+        const action = Alexa.getSlotValue(handlerInput.requestEnvelope, 'ACTION');
         // publish message to ROS
         msg_topic.advertise();
-        var str = new ROSLIB.Message({
-            data : foodItem
+        var action_msg = new ROSLIB.Message({
+            data : action
         });
-        msg_topic.publish(str);
+        msg_topic.publish(action_msg);
 
-        console.log('food: %s', foodItem);
-
+        console.log('action: %s', action);
+        if (foodItem !== 'undefined') {
+            console.log('food: %s', foodItem);
+        }
+        if (foodItem === 'carrot') {
+            speakOutput = 'What do you want to eat?';
+        } else {
+            speakOutput = 'What do you want to have?';
+        }
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .getResponse();
@@ -77,7 +64,7 @@ const CancelAndStopIntentHandler = {
                 || Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.StopIntent');
     },
     handle(handlerInput) {
-        var speakOutput = 'Goodbye!';
+        const speakOutput = 'Goodbye!';
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .getResponse();
@@ -103,7 +90,6 @@ const IntentReflectorHandler = {
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
-            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
             .getResponse();
     }
 };
@@ -124,21 +110,19 @@ const ErrorHandler = {
 };
 
 exports.handler = Alexa.SkillBuilders.custom()
-    // .withSkillId("amzn1.ask.skill.de2d670d-76ee-4fe1-bd41-01bc896c0cb3")
+    .withSkillId("amzn1.ask.skill.de2d670d-76ee-4fe1-bd41-01bc896c0cb3")
     .addRequestHandlers(
         LaunchRequestHandler,
-        InProgressFeedingDemoIntentHandler,
-        CompletedFeedingDemoIntentHandler,
+        FeedingDemoIntentHandler,
         HelpIntentHandler,
         CancelAndStopIntentHandler,
         SessionEndedRequestHandler,
-        IntentReflectorHandler, // make sure IntentReflectorHandler is last so it doesn't override your custom intent handlers
+        IntentReflectorHandler,
         )
     .addErrorHandlers(
         ErrorHandler,
         )
     .lambda();
-
 
 // Connecting to ROS
 var ROSLIB = require('roslib');
@@ -149,15 +133,15 @@ var ros = new ROSLIB.Ros({
 });
 
 ros.on('connection', function() {
-    console.log('publish-example: Connected to websocket server.');
+    console.log('Connected to websocket server.');
 });
 
 ros.on('error', function(error) {
-    console.log('publish-example: Error connecting to websocket server: ', error);
+    console.log('Error connecting to websocket server: ', error);
 });
 
 ros.on('close', function() {
-    console.log('publish-example: Connection to websocket server closed.');
+    console.log('Connection to websocket server closed.');
 });
 
 var msg_topic = new ROSLIB.Topic({

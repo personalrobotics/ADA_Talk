@@ -20,10 +20,7 @@
                     "slots": [
                         {
                             "name": "FOOD_ITEMS",
-                            "type": "FOOD_ITEMS",
-                            "samples": [
-                                "{FOOD_ITEMS}"
-                            ]
+                            "type": "FOOD_ITEMS"
                         },
                         {
                             "name": "ACTION",
@@ -34,13 +31,13 @@
                             "type": "AMAZON.SearchQuery"
                         },
                         {
-                            "name": "FEED",
-                            "type": "FEED"
+                            "name": "FEED_ANGLE",
+                            "type": "FEED_ANGLE"
                         }
                     ],
                     "samples": [
                         "to use {ACTION} ",
-                        "to feed me {FEED}",
+                        "to feed me {FEED_ANGLE}",
                         "to give me {SearchQuery}",
                         "to give me {FOOD_ITEMS}",
                         "to get {FOOD_ITEMS}",
@@ -153,7 +150,7 @@
                     ]
                 },
                 {
-                    "name": "FEED",
+                    "name": "FEED_ANGLE",
                     "values": [
                         {
                             "name": {
@@ -173,28 +170,24 @@
             "intents": [
                 {
                     "name": "FeedingDemoIntent",
-                    "delegationStrategy": "ALWAYS",
+                    "delegationStrategy": "SKILL_RESPONSE",
                     "confirmationRequired": false,
                     "prompts": {},
                     "slots": [
                         {
                             "name": "FOOD_ITEMS",
                             "type": "FOOD_ITEMS",
-                            "confirmationRequired": true,
-                            "elicitationRequired": true,
-                            "prompts": {
-                                "confirmation": "Confirm.Slot.1060365625424.692906494560",
-                                "elicitation": "Elicit.Slot.1219692999379.1473990053438"
-                            },
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {},
                             "validations": [
                                 {
                                     "type": "isInSet",
                                     "prompt": "Slot.Validation.529789871216.604075709882.1389953832800",
                                     "values": [
-                                        "celery",
-                                        "strawberry",
                                         "carrot",
-                                        "cantaloupe"
+                                        "cantaloupe",
+                                        "broccoli"
                                     ]
                                 }
                             ]
@@ -214,8 +207,8 @@
                             "prompts": {}
                         },
                         {
-                            "name": "FEED",
-                            "type": "FEED",
+                            "name": "FEED_ANGLE",
+                            "type": "FEED_ANGLE",
                             "confirmationRequired": false,
                             "elicitationRequired": false,
                             "prompts": {}
