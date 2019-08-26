@@ -33,9 +33,17 @@
                         {
                             "name": "FEED_ANGLE",
                             "type": "FEED_ANGLE"
+                        },
+                        {
+                            "name": "BRING_FOOD",
+                            "type": "BRING_FOOD"
                         }
                     ],
                     "samples": [
+                        "to feed me with an {FEED_ANGLE}",
+                        "to feed me with {FEED_ANGLE}",
+                        "to bring me {BRING_FOOD}",
+                        "to bring me the {BRING_FOOD}",
                         "to use {ACTION} ",
                         "to feed me {FEED_ANGLE}",
                         "to give me {SearchQuery}",
@@ -154,12 +162,23 @@
                     "values": [
                         {
                             "name": {
-                                "value": "angled"
+                                "value": "angle"
                             }
                         },
                         {
                             "name": {
-                                "value": "horizontal"
+                                "value": "horizontally"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "BRING_FOOD",
+                    "values": [
+                        {
+                            "id": "0",
+                            "name": {
+                                "value": "food"
                             }
                         }
                     ]
@@ -185,9 +204,9 @@
                                     "type": "isInSet",
                                     "prompt": "Slot.Validation.529789871216.604075709882.1389953832800",
                                     "values": [
+                                        "broccoli",
                                         "carrot",
-                                        "cantaloupe",
-                                        "broccoli"
+                                        "cantaloupe"
                                     ]
                                 }
                             ]
@@ -209,6 +228,13 @@
                         {
                             "name": "FEED_ANGLE",
                             "type": "FEED_ANGLE",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        },
+                        {
+                            "name": "BRING_FOOD",
+                            "type": "BRING_FOOD",
                             "confirmationRequired": false,
                             "elicitationRequired": false,
                             "prompts": {}
