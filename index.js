@@ -19,27 +19,27 @@ const FeedingDemoIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'FeedingDemoIntent';
     },
     handle(handlerInput) {
-        var speakOutput;
         const foodItem = Alexa.getSlotValue(handlerInput.requestEnvelope, 'FOOD_ITEMS');
         const action = Alexa.getSlotValue(handlerInput.requestEnvelope, 'ACTION');
         // publish message to ROS
-        msg_topic.advertise();
-        var action_msg = new ROSLIB.Message({
-            data : action
-        });
-        msg_topic.publish(action_msg);
+        if (foodItem) {
+            console.log(foodItem);
+            food_topic.advertise();
+            var food_msg = new ROSLIB.Message({
+                data : foodItem
+            });
+            food_topic.publish(food_msg);
+        }
+        if (action) {
+            console.log(action);
+            action_topic.advertise();
+            var action_msg = new ROSLIB.Message({
+                data : action
+            });
+            action_topic.publish(action_msg);
+        }
 
-        console.log('action: %s', action);
-        if (foodItem !== 'undefined') {
-            console.log('food: %s', foodItem);
-        }
-        if (foodItem === 'carrot') {
-            speakOutput = 'What do you want to eat?';
-        } else {
-            speakOutput = 'What do you want to have?';
-        }
         return handlerInput.responseBuilder
-            .speak(speakOutput)
             .getResponse();
     }
 };
@@ -144,8 +144,14 @@ ros.on('close', function() {
     console.log('Connection to websocket server closed.');
 });
 
-var msg_topic = new ROSLIB.Topic({
+var food_topic = new ROSLIB.Topic({
     ros: ros, 
-    name: '/alexa_msgs', 
+    name: '/alexa_food_msgs', 
+    messageType: 'std_msgs/String'
+});
+
+var action_topic = new ROSLIB.Topic({
+    ros: ros, 
+    name: '/alexa_action_msgs', 
     messageType: 'std_msgs/String'
 });
