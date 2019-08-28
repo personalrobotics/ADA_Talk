@@ -1,6 +1,8 @@
 # ADA_Talk
 
 * **Switch to finalDemo branch for Summer 2019 demo!**
+* **Publishes ROS topics the message received from Alexa. Needs further ada_demos package integration to adapt the published msgs.**
+* **ada_demos branch: tao/summer2019 has already adapt the published topics to interace with the demo. Consult Ethan for changes made since Tao's leaving**
 
 Speech Interface for ADA DEMO Summer 2019
 
