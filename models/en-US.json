@@ -25,37 +25,23 @@
                         {
                             "name": "ACTION",
                             "type": "ACTION"
-                        },
-                        {
-                            "name": "SearchQuery",
-                            "type": "AMAZON.SearchQuery"
-                        },
-                        {
-                            "name": "FEED_ANGLE",
-                            "type": "FEED_ANGLE"
-                        },
-                        {
-                            "name": "BRING_FOOD",
-                            "type": "BRING_FOOD"
                         }
                     ],
                     "samples": [
-                        "to feed me with an {FEED_ANGLE}",
-                        "to feed me with {FEED_ANGLE}",
-                        "to bring me {BRING_FOOD}",
-                        "to bring me the {BRING_FOOD}",
                         "to use {ACTION} ",
-                        "to feed me {FEED_ANGLE}",
-                        "to give me {SearchQuery}",
+                        "to please use {ACTION}",
+                        "to please {ACTION}",
                         "to give me {FOOD_ITEMS}",
                         "to get {FOOD_ITEMS}",
+                        "to grab {FOOD_ITEMS}",
                         "to pickup {FOOD_ITEMS}",
-                        "to {ACTION}",
                         "i need {FOOD_ITEMS}",
                         "i want {FOOD_ITEMS}",
                         "feed me {FOOD_ITEMS}",
                         "i want to eat",
-                        "i want food"
+                        "i want food",
+                        "i am ready",
+                        "no thank you"
                     ]
                 },
                 {
@@ -68,62 +54,99 @@
                     "name": "FOOD_ITEMS",
                     "values": [
                         {
+                            "id": "15",
                             "name": {
-                                "value": "banana"
+                                "value": "kale"
                             }
                         },
                         {
+                            "id": "14",
                             "name": {
-                                "value": "vegetables"
+                                "value": "spinach"
                             }
                         },
                         {
+                            "id": "13",
                             "name": {
-                                "value": "potatoes"
+                                "value": "lettuce"
                             }
                         },
                         {
-                            "name": {
-                                "value": "green beans"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "tomatoes"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "cabbage"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "tomato"
-                            }
-                        },
-                        {
-                            "id": "3",
-                            "name": {
-                                "value": "celery"
-                            }
-                        },
-                        {
-                            "id": "2",
-                            "name": {
-                                "value": "cantaloupe"
-                            }
-                        },
-                        {
-                            "id": "1",
+                            "id": "12",
                             "name": {
                                 "value": "strawberry"
                             }
                         },
                         {
-                            "id": "4",
+                            "id": "11",
+                            "name": {
+                                "value": "kiwi"
+                            }
+                        },
+                        {
+                            "id": "10",
+                            "name": {
+                                "value": "honeydew"
+                            }
+                        },
+                        {
+                            "id": "9",
+                            "name": {
+                                "value": "grape"
+                            }
+                        },
+                        {
+                            "id": "8",
+                            "name": {
+                                "value": "cherry tomato"
+                            }
+                        },
+                        {
+                            "id": "7",
+                            "name": {
+                                "value": "celery"
+                            }
+                        },
+                        {
+                            "id": "6",
+                            "name": {
+                                "value": "cauliflower"
+                            }
+                        },
+                        {
+                            "id": "5",
                             "name": {
                                 "value": "carrot"
+                            }
+                        },
+                        {
+                            "id": "4",
+                            "name": {
+                                "value": "cantaloupe"
+                            }
+                        },
+                        {
+                            "id": "3",
+                            "name": {
+                                "value": "broccoli"
+                            }
+                        },
+                        {
+                            "id": "2",
+                            "name": {
+                                "value": "bell pepper"
+                            }
+                        },
+                        {
+                            "id": "1",
+                            "name": {
+                                "value": "banana"
+                            }
+                        },
+                        {
+                            "id": "0",
+                            "name": {
+                                "value": "apple"
                             }
                         }
                     ]
@@ -132,53 +155,51 @@
                     "name": "ACTION",
                     "values": [
                         {
+                            "id": "7",
+                            "name": {
+                                "value": "tilt the food"
+                            }
+                        },
+                        {
+                            "id": "6",
+                            "name": {
+                                "value": "cross angle"
+                            }
+                        },
+                        {
+                            "id": "5",
+                            "name": {
+                                "value": "angle"
+                            }
+                        },
+                        {
+                            "id": "4",
+                            "name": {
+                                "value": "cross tilt"
+                            }
+                        },
+                        {
                             "id": "3",
                             "name": {
-                                "value": "tilted vertical"
+                                "value": "tilt"
                             }
                         },
                         {
                             "id": "2",
                             "name": {
-                                "value": "tilted angled"
+                                "value": "cross skewer"
                             }
                         },
                         {
                             "id": "1",
                             "name": {
-                                "value": "vertical"
+                                "value": "skewer"
                             }
                         },
                         {
                             "id": "0",
                             "name": {
                                 "value": "stop"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "FEED_ANGLE",
-                    "values": [
-                        {
-                            "name": {
-                                "value": "angle"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "horizontally"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "BRING_FOOD",
-                    "values": [
-                        {
-                            "id": "0",
-                            "name": {
-                                "value": "food"
                             }
                         }
                     ]
@@ -198,43 +219,11 @@
                             "type": "FOOD_ITEMS",
                             "confirmationRequired": false,
                             "elicitationRequired": false,
-                            "prompts": {},
-                            "validations": [
-                                {
-                                    "type": "isInSet",
-                                    "prompt": "Slot.Validation.529789871216.604075709882.1389953832800",
-                                    "values": [
-                                        "broccoli",
-                                        "carrot",
-                                        "cantaloupe"
-                                    ]
-                                }
-                            ]
+                            "prompts": {}
                         },
                         {
                             "name": "ACTION",
                             "type": "ACTION",
-                            "confirmationRequired": false,
-                            "elicitationRequired": false,
-                            "prompts": {}
-                        },
-                        {
-                            "name": "SearchQuery",
-                            "type": "AMAZON.SearchQuery",
-                            "confirmationRequired": false,
-                            "elicitationRequired": false,
-                            "prompts": {}
-                        },
-                        {
-                            "name": "FEED_ANGLE",
-                            "type": "FEED_ANGLE",
-                            "confirmationRequired": false,
-                            "elicitationRequired": false,
-                            "prompts": {}
-                        },
-                        {
-                            "name": "BRING_FOOD",
-                            "type": "BRING_FOOD",
                             "confirmationRequired": false,
                             "elicitationRequired": false,
                             "prompts": {}
@@ -269,15 +258,6 @@
                     {
                         "type": "PlainText",
                         "value": "Please specify a food item."
-                    }
-                ]
-            },
-            {
-                "id": "Slot.Validation.529789871216.604075709882.1389953832800",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "I am not designed for it. Mind saying an item I know?"
                     }
                 ]
             },

@@ -21,41 +21,27 @@ const FeedingDemoIntentHandler = {
     handle(handlerInput) {
         const foodItem = Alexa.getSlotValue(handlerInput.requestEnvelope, 'FOOD_ITEMS');
         const action = Alexa.getSlotValue(handlerInput.requestEnvelope, 'ACTION');
-        const approach = Alexa.getSlotValue(handlerInput.requestEnvelope, 'BRING_FOOD');
-        const feedAngle = Alexa.getSlotValue(handlerInput.requestEnvelope, 'FEED_ANGLE');
         // publish message to ROS
         if (foodItem) {
-            console.log(foodItem);
-            food_topic.advertise();
+            console.log(foodItem.split(' ').join('_'));
             var food_msg = new ROSLIB.Message({
-                data : foodItem
+                data : foodItem.split(' ').join('_')
             });
             food_topic.publish(food_msg);
-        }
-        if (action) {
-            console.log(action);
-            action_topic.advertise();
+        } else if (action) {
+            console.log(action.split(' ').join('_'));
             var action_msg = new ROSLIB.Message({
-                data : action
+                data : action.split(' ').join('_')
+            });
+            action_topic.publish(action_msg);
+        } else {
+            console.log(`Got Request!`);
+            var action_msg = new ROSLIB.Message({
+                data : `continue`
             });
             action_topic.publish(action_msg);
         }
-        if (approach) {
-            console.log("bring food");
-            bring_food_topic.advertise();
-            var bring_food_msg = new ROSLIB.Message({
-                data : 'ok'
-            });
-            bring_food_topic.publish(bring_food_msg);
-        }
-        if (feedAngle) {
-            console.log("feed angle");
-            feed_angle_topic.advertise();
-            var feed_angle_msg = new ROSLIB.Message({
-                data : feedAngle
-            });
-            feed_angle_topic.publish(feed_angle_msg);
-        }
+        
 
         return handlerInput.responseBuilder
             .getResponse();
@@ -174,14 +160,6 @@ var action_topic = new ROSLIB.Topic({
     messageType: 'std_msgs/String'
 });
 
-var bring_food_topic = new ROSLIB.Topic({
-    ros: ros, 
-    name: '/alexa_bring_food_msgs', 
-    messageType: 'std_msgs/String'
-});
-
-var feed_angle_topic = new ROSLIB.Topic({
-    ros: ros, 
-    name: '/alexa_feed_angle_msgs', 
-    messageType: 'std_msgs/String'
-});
+// Advertise topics
+food_topic.advertise();
+action_topic.advertise();
