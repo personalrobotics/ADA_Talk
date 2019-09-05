@@ -150,13 +150,13 @@ ros.on('close', function() {
 
 var food_topic = new ROSLIB.Topic({
     ros: ros, 
-    name: '/alexa_food_msgs', 
+    name: '/study_food_msgs', 
     messageType: 'std_msgs/String'
 });
 
 var action_topic = new ROSLIB.Topic({
     ros: ros, 
-    name: '/alexa_action_msgs', 
+    name: '/study_action_msgs', 
     messageType: 'std_msgs/String'
 });
 
