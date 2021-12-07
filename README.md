@@ -11,13 +11,21 @@ The Alexa skill can be accessed through: https://developer.amazon.com/alexa/cons
 ## Hardware Requirement
 Amazon Echo Dot (Alexa) needs to be powered from power source of your choice.
 
+## Dependencies
+* [rosbridge_suite](https://wiki.ros.org/rosbridge_suite): `sudo apt-get install ros-<rosdistro>-rosbridge-server`
+* [NodeJS](https://nodejs.org/en/): `sudo apt install nodejs`
+
 ## How to start
 * **The following commands should be executed in this package folder**
 
 ```
-roslaunch rosbridge_server rosbridge_websocket
+roslaunch rosbridge_server rosbridge_websocket.launch
 bst proxy lambda index.js
 ```
+
+Enter the endpoint outputted by that script into the FeedingDemo skill's Endpoint in the [Alexa console](https://developer.amazon.com/alexa/console/ask) (username personalroboticsstudies@gmail.com).
+
+Note that Bespoken is not necessary for the Alexa pipeline to work.
 
 ## Usage
 The default invocation is: Alexa, ask the robot.
