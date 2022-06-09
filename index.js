@@ -12,6 +12,7 @@ const LaunchRequestHandler = {
             .getResponse();
     }
 };
+/*
 const InProgressFeedingDemoIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -25,6 +26,7 @@ const InProgressFeedingDemoIntentHandler = {
         const foodItem = Alexa.getSlotValue(handlerInput.requestEnvelope, 'FOOD_ITEMS');
 
         console.log('food: %s', foodItem);
+        console.log("Dialog State: %s", Alexa.getDialogState(handlerInput.requestEnvelope))
 
         return handlerInput.responseBuilder
             .addDelegateDirective(currentIntent)
@@ -33,11 +35,12 @@ const InProgressFeedingDemoIntentHandler = {
             .getResponse();
     }
 };
+*/
 const CompletedFeedingDemoIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
-            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'FeedingDemoIntent'
-            && Alexa.getDialogState(handlerInput.requestEnvelope) === 'COMPLETED';
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'FeedingDemoIntent';
+//            && Alexa.getDialogState(handlerInput.requestEnvelope) === 'COMPLETED';
     },
     handle(handlerInput) {
         var speakOutput;
@@ -137,7 +140,7 @@ exports.handler = Alexa.SkillBuilders.custom()
     // .withSkillId("amzn1.ask.skill.de2d670d-76ee-4fe1-bd41-01bc896c0cb3")
     .addRequestHandlers(
         LaunchRequestHandler,
-        InProgressFeedingDemoIntentHandler,
+        //InProgressFeedingDemoIntentHandler,
         CompletedFeedingDemoIntentHandler,
         HelpIntentHandler,
         CancelAndStopIntentHandler,
